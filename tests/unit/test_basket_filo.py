@@ -1,5 +1,5 @@
 """
-Unit tests for FILO checkout rank, basket sizing, and need zone identification.
+Unit tests for Stack checkout rank, basket sizing, and need zone identification.
 """
 
 import pytest
@@ -18,7 +18,7 @@ def test_basket_size_calculation():
 
 def test_checkout_rank_filo_logic():
     """
-    Validates FILO checkout sequence:
+    Validates Stack (LIFO) checkout sequence:
     Item added 1st should have checkout_rank = 20 (scanned last).
     Item added 20th should have checkout_rank = 1 (scanned first).
     """

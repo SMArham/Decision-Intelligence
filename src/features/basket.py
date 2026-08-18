@@ -1,5 +1,5 @@
 """
-Basket feature engineering: FILO checkout sequence, basket size, and need zone demarcation.
+Basket feature engineering: Stack (LIFO) checkout sequence, basket size, and need zone demarcation.
 """
 
 from typing import Optional
@@ -20,7 +20,7 @@ def calculate_basket_features(
     """
     Computes core basket sequence features:
     1. basket_size: Total items in order.
-    2. checkout_rank: FILO checkout sequence proxy = basket_size - add_to_cart_order + 1.
+    2. checkout_rank: Stack (LIFO) checkout sequence proxy = basket_size - add_to_cart_order + 1.
     3. is_in_need_zone: True if checkout_rank is among the last N scanned items (first N added).
     4. confidence_flag: 'HIGH' if basket_size >= need_zone_limit, else 'LOW'.
     5. proxy_period: Discrete period bin for trend analytics.
@@ -39,7 +39,7 @@ def calculate_basket_features(
     basket_sizes = df.groupby("order_id")["add_to_cart_order"].transform("max")
     df["basket_size"] = basket_sizes.astype("int32")
 
-    # 2. FILO Checkout Rank: First in trolley = Last scanned by cashier
+    # 2. Stack (LIFO) Checkout Rank: First in trolley = Bottom of stack = Last scanned by cashier
     # Item added 1st in basket of size 20 -> checkout_rank = 20 - 1 + 1 = 20 (scanned last)
     # Item added 20th in basket of size 20 -> checkout_rank = 20 - 20 + 1 = 1 (scanned first)
     df["checkout_rank"] = (df["basket_size"] - df["add_to_cart_order"] + 1).astype("int32")

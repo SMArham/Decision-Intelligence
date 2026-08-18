@@ -36,7 +36,7 @@ def run_full_pipeline(force_sample: bool = False) -> None:
     """
     Executes the complete end-to-end P&G Ad Budget Optimizer pipeline:
     1. Ingestion & Sanitation (Kaggle or sample fallback)
-    2. FILO Basket Feature Engineering
+    2. Stack Basket Feature Engineering
     3. P&G Brand Matching & Need/Want Categorization
     4. Supply Scoring Proxy
     5. P&G Need Share Aggregation & Confidence Intervals
@@ -60,8 +60,8 @@ def run_full_pipeline(force_sample: bool = False) -> None:
     logger.info("[2/8] Enriching products with P&G brand regex...")
     df_products = enrich_with_pg_brands(tables["products"])
 
-    # Step 3: Basket FILO Features
-    logger.info("[3/8] Computing FILO checkout sequence & need zones...")
+    # Step 3: Basket Stack Features
+    logger.info("[3/8] Computing Stack checkout sequence & need zones...")
     df_features = calculate_basket_features(tables["order_products"], tables["orders"])
 
     # Merge product details

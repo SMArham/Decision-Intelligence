@@ -7,7 +7,7 @@
 [![Tests: 21 Passed](https://img.shields.io/badge/Tests-21%2F21%20Passing-brightgreen.svg)]()
 [![Streamlit App](https://img.shields.io/badge/Dashboard-Streamlit%20Dark%20Theme-ff4b4b.svg)]()
 
-A lightweight, enterprise-grade **Decision Intelligence & Advertisement Budget Optimization System** engineered for **The Procter & Gamble Company (P&G)**. The engine transforms consumer grocery basket sequence data into actionable retail marketing intelligence using **First-In, Last-Out (FILO) checkout scan modeling**, applies **Wilson Score 95% Confidence Intervals**, integrates **Fuzzy Logic Expert Multipliers**, clusters customer shopping behavior via **K-Means Machine Learning**, and dynamically allocates marketing capital calibrated against official **SEC Form 10-K** financial disclosures.
+A lightweight, enterprise-grade **Decision Intelligence & Advertisement Budget Optimization System** engineered for **The Procter & Gamble Company (P&G)**. The engine transforms consumer grocery basket sequence data into actionable retail marketing intelligence using **Stack (LIFO / First-In, Last-Out) checkout scan modeling**, applies **Wilson Score 95% Confidence Intervals**, integrates **Fuzzy Logic Expert Multipliers**, clusters customer shopping behavior via **K-Means Machine Learning**, and dynamically allocates marketing capital calibrated against official **SEC Form 10-K** financial disclosures.
 
 ---
 
@@ -27,8 +27,8 @@ A lightweight, enterprise-grade **Decision Intelligence & Advertisement Budget O
 ## 🧠 Core Algorithmic & Mathematical Innovations
 
 ```
-Instacart Cart Sequence ──► FILO Checkout Rank ──► Need Zone (Last 10 Scanned)
-                                                        │
+Instacart Cart Sequence ──► Stack Checkout Rank ──► Need Zone (Last 10 Scanned)
+                                                         │
 P&G Brand Regex ────────────────────────────────────────┼──► P&G Need Share (%) + Wilson 95% CI
                                                         │
 Supply Proxy (Stock Score) ─────────────────────────────┼──► Fuzzy Expert Multipliers
@@ -36,10 +36,10 @@ Supply Proxy (Stock Score) ─────────────────�
 SEC 10-K Financial Benchmarks ──────────────────────────┴──► Optimized Ad Budget ($) + Action Plan
 ```
 
-### 1. FILO (First-In, Last-Out) Checkout Scan Modeling
-* **Trolley Physics**: In grocery shopping trips, consumers select essential staple products (*Detergent, Diapers, Soap, Oral Care*) at the start of their journey. These items sit at the **bottom** of the physical shopping trolley. Discretionary impulse items (*Snacks, Sodas, Candies*) are placed on top towards the end of the trip.
-* **Cashier Scan Sequence**: At checkout, cashiers scan items from the top of the trolley to the bottom. Consequently:
-  $$\text{First Bought} = \text{Last Scanned (FILO)}$$
+### 1. Stack (LIFO) Checkout Scan Modeling
+* **Trolley Physics**: In grocery shopping trips, consumers select essential staple products (*Detergent, Diapers, Soap, Oral Care*) at the start of their journey. These items sit at the **bottom** of the physical shopping trolley stack. Discretionary impulse items (*Snacks, Sodas, Candies*) are placed on top towards the end of the trip.
+* **Cashier Scan Sequence**: At checkout, cashiers scan items from the top of the stack to the bottom. Consequently:
+  $$\text{First Bought} = \text{Last Scanned (Stack Order)}$$
 * **Checkout Rank Formula**:
   $$\text{Checkout Rank} = \text{Basket Size} - \text{Add To Cart Order} + 1$$
 * **Need Zone Demarcation**: The last 10 scanned items (`add_to_cart_order <= 10`) represent the customer's core **Essential Need Zone**.
@@ -99,7 +99,7 @@ The system is calibrated directly against verified disclosures from **The Procte
 | **Data Processing** | **Pandas, NumPy, PyArrow** | Columnar vectorized processing with Snappy compression for high-speed in-memory analytics. |
 | **Machine Learning** | **Scikit-Learn, SciPy** | Supervised Random Forest classification, K-Means clustering, and Wilson binomial distributions. |
 | **Database & Mart** | **SQLite (`pg_ad_optimizer.db`) + Parquet** | Serverless relational data mart paired with high-performance immutable Parquet storage (<50MB footprint). |
-| **Testing** | **Pytest (21 Automated Tests)** | 100% automated test coverage across FILO logic, fuzzy inference, multipliers, and data quality checks. |
+| **Testing** | **Pytest (21 Automated Tests)** | 100% automated test coverage across Stack logic, fuzzy inference, multipliers, and data quality checks. |
 
 ---
 
@@ -122,7 +122,7 @@ pg_ad_optimizer/
 │   ├── logging.py               # Structured logger
 │   ├── exceptions.py            # Custom exception hierarchy
 │   ├── data/                    # Ingestion, cleaning, schema validation, Kaggle client
-│   ├── features/                # FILO sequence, brand regex, need/want, supply proxy
+│   ├── features/                # Stack sequence, brand regex, need/want, supply proxy
 │   ├── analytics/               # Need share aggregation, Wilson CI, SEC financials
 │   ├── models/                  # ML classifier, K-Means clustering, fuzzy engine, uplift
 │   ├── rules/                   # Multipliers, budget caps, ROI, before/after benchmarks
@@ -130,7 +130,7 @@ pg_ad_optimizer/
 │   └── dashboard/               # Streamlit 8-page interactive web portal & Plotly charts
 ├── tests/
 │   ├── fixtures/                # Standard test datasets (20-item basket test case)
-│   ├── unit/                    # Unit tests for FILO, brand regex, multipliers, fuzzy AI
+│   ├── unit/                    # Unit tests for Stack model, brand regex, multipliers, fuzzy AI
 │   └── integration/             # End-to-end pipeline test
 ├── .env.example
 ├── .gitignore

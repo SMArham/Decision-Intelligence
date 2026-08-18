@@ -401,7 +401,7 @@ def main():
             <div class="pg-badge-logo">P&G</div>
             <div>
                 <h1 class="main-title">Procter & Gamble Decision Intelligence Portal</h1>
-                <p class="sub-title">Algorithmic Ad Spend Optimization Engine &bull; Instacart FILO Checkout Proxy &bull; SEC 10-K FY2024</p>
+                <p class="sub-title">Algorithmic Ad Spend Optimization Engine &bull; Instacart Stack Checkout Proxy &bull; SEC 10-K FY2024</p>
             </div>
         </div>
         <div class="system-status-pill">
@@ -422,7 +422,7 @@ def main():
         <div class="kpi-card">
             <div class="kpi-label">Baskets Analyzed</div>
             <div class="kpi-value">{total_baskets:,}</div>
-            <div class="kpi-delta-neu">FILO Sequence Proxy</div>
+            <div class="kpi-delta-neu">Stack Sequence Proxy</div>
         </div>
         <div class="kpi-card">
             <div class="kpi-label">P&G Items Identified</div>
@@ -468,7 +468,7 @@ def main():
         <div class="content-box">
             <h4 style="color: #38bdf8; margin-top:0;"><b>Core Optimization Mechanism</b></h4>
             <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.5;">
-                <b>1. FILO Checkout Sequence:</b> First bought items into trolley sit at the bottom and are scanned last at cashier checkout. Last 10 scanned items form the <b>Need Zone</b>.
+                <b>1. Stack (LIFO) Checkout Sequence:</b> First bought items into trolley sit at the bottom of the stack and are scanned last at cashier checkout. Last 10 scanned items form the <b>Need Zone</b>.
             </p>
             <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.5;">
                 <b>2. Stockout Zero-Waste Rule:</b> When warehouse stock is low (Supply &lt; 0.60), ad spend is halted to <b>$0</b> to prevent wasted ad dollars and customer churn.
@@ -650,7 +650,7 @@ def main():
     st.markdown("""
     <div class="app-footer">
         <div class="footer-links">
-            <span class="footer-pill">&#128202; Model: FILO Checkout Proxy v1.0</span>
+            <span class="footer-pill">&#128202; Model: Stack Checkout Proxy v1.0</span>
             <span class="footer-pill">&#128176; Financials: US SEC Form 10-K (FY2024)</span>
             <span class="footer-pill">&#128737; Zero-Waste Stockout Protection: ACTIVE</span>
             <span class="footer-pill">&#9989; Data Quality: 9/9 Passed</span>
