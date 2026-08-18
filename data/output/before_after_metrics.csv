@@ -1,0 +1,9 @@
+metric,baseline_blind_marketing,optimized_data_driven,absolute_change,percentage_improvement,unit
+Total Ad Spend Deployed,100000.0,100000.0,0.0,0.0,Currency ($/₹)
+Wasted Spend Rate,25.0,8.0,-17.0,68.0,% (Lower is Better)
+Wasted Media Spend,25000.0,8000.0,-17000.0,68.0,Currency ($/₹)
+Effective Media Spend,75000.0,92000.0,17000.0,22.67,Currency ($/₹)
+Return on Ad Spend (ROAS),3.0,4.5,1.5,50.0,x Multiplier
+Incremental Gross Revenue,300000.0,450000.0,150000.0,50.0,Currency ($/₹)
+Incremental Net Profit,105000.0,157500.0,52500.0,50.0,Currency ($/₹)
+Profit ROI Hurdle,1.05,1.57,0.52,50.0,x Multiplier

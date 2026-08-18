@@ -1,0 +1,30 @@
+# Supply & Inventory Proxy Configuration
+# Instacart does not provide live retailer warehouse inventory.
+# This configuration governs proxy availability scoring based on reorder regularity,
+# basket appearance frequency, and simulated stock cover metrics.
+
+default_supply_score: 0.95
+fixed_seed: 42
+
+# Manual Department / Category Stock Score Overrides (for simulation or specific stress testing)
+department_supply_overrides:
+  personal care: 0.92
+  household: 0.88
+  babies: 0.95
+  pantry: 0.85
+  snacks: 0.98
+  beverages: 0.90
+  dairy eggs: 0.82
+  produce: 0.78
+  meat seafood: 0.75
+  alcohol: 0.85
+
+# Specific brand / category risk flags
+critical_low_stock_categories: []
+
+# Supply Multiplier Tiers
+tiers:
+  - { threshold: 0.60, multiplier: 0.0, label: "CRITICAL_STOCKOUT", description: "Halt all ads to prevent customer churn and wasted media spend." }
+  - { threshold: 0.80, multiplier: 0.5, label: "LOW_STOCK",         description: "Throttle ad spend by 50% while replenishment is underway." }
+  - { threshold: 1.00, multiplier: 1.0, label: "ADEQUATE_STOCK",    description: "Full budget deployed at normal pace." }
+  - { threshold: 9.99, multiplier: 1.1, label: "SURPLUS_STOCK",     description: "Boost budget by 10% to accelerate clearance and volume." }

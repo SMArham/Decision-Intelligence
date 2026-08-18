@@ -1,0 +1,10 @@
+table,check_name,status,details,severity
+basket_features,order_id_not_null,PASS,Null count: 0/16663,CRITICAL
+basket_features,product_id_not_null,PASS,Null count: 0/16663,CRITICAL
+basket_features,positive_add_to_cart_order,PASS,Non-positive rows: 0/16663,HIGH
+basket_features,positive_basket_size,PASS,Non-positive baskets: 0/16663,HIGH
+basket_features,pg_brand_match_rate_valid,PASS,P&G match rate: 39.20% (6532 items),MEDIUM
+pg_need_share,need_share_range_valid_0_to_1,PASS,Out-of-bounds rows: 0/44,CRITICAL
+budget_recommendations,supply_score_non_negative,PASS,Negative supply score count: 0/44,HIGH
+budget_recommendations,budget_non_negative,PASS,Negative budget count: 0/44,CRITICAL
+budget_recommendations,finite_roi_metrics,PASS,Non-finite ROI count: 0/44,HIGH

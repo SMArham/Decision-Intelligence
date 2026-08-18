@@ -1,0 +1,26 @@
+# Procter & Gamble Official Financial Benchmark & Marketing Intensity
+# Source: P&G Form 10-K Annual Report (Fiscal Year ended June 30, 2024) - SEC EDGAR
+
+company: "The Procter & Gamble Company"
+ticker: "PG"
+fiscal_year: "FY2024"
+currency: "USD"
+
+# Corporate Level Financials
+total_revenue: 84039000000.0         # Net Sales: $84.039 Billion
+advertising_expense: 8560000000.0    # Advertising spend from Note disclosures: $8.560 Billion
+marketing_intensity: 0.101857        # ~10.19% of Net Sales invested in marketing / advertising
+
+# P&G Reportable Segment Revenue Breakdown
+# Used to allocate corporate marketing budget across product categories
+category_revenue_shares:
+  fabric_and_home_care: 0.35         # Tide, Ariel, Dawn, Cascade, Febreze, Swiffer, Downy
+  baby_feminine_and_family: 0.25     # Pampers, Always, Whisper, Tampax, Bounty, Charmin
+  beauty: 0.18                       # Pantene, Head & Shoulders, Herbal Essences, Olay
+  health_care: 0.14                  # Oral-B, Crest, Vicks
+  grooming: 0.08                     # Gillette, Venus, Braun
+
+notes: >
+  Financial figures are calibrated directly from P&G's FY2024 10-K filed with the US SEC.
+  Exact retail/campaign-level ad spend is allocated proportionally using brand need share
+  and segment revenue weightings.

@@ -1,0 +1,45 @@
+segment,proxy_period,total_baskets,total_need_zone_items,pg_need_zone_items,pg_need_share,wilson_ci_lower,wilson_ci_upper,confidence_level_label,is_high_confidence
+babies,Proxy_Period_1,157,171,120,0.7018,0.6294,0.7653,HIGH,True
+babies,Proxy_Period_2,140,154,100,0.6494,0.5712,0.7202,HIGH,True
+babies,Proxy_Period_3,163,168,115,0.6845,0.6108,0.75,HIGH,True
+babies,Proxy_Period_4,142,169,111,0.6568,0.5825,0.7242,HIGH,True
+bakery,Proxy_Period_1,151,57,0,0.0,0.0,0.0631,HIGH,True
+bakery,Proxy_Period_2,155,57,0,0.0,0.0,0.0631,HIGH,True
+bakery,Proxy_Period_3,168,64,0,0.0,0.0,0.0566,HIGH,True
+bakery,Proxy_Period_4,157,51,0,0.0,0.0,0.07,HIGH,True
+beverages,Proxy_Period_1,257,235,0,0.0,0.0,0.0161,HIGH,True
+beverages,Proxy_Period_2,257,224,0,0.0,0.0,0.0169,HIGH,True
+beverages,Proxy_Period_3,293,282,0,0.0,0.0,0.0134,HIGH,True
+beverages,Proxy_Period_4,274,264,0,0.0,0.0,0.0143,HIGH,True
+dairy eggs,Proxy_Period_1,129,141,0,0.0,0.0,0.0265,HIGH,True
+dairy eggs,Proxy_Period_2,145,159,0,0.0,0.0,0.0236,HIGH,True
+dairy eggs,Proxy_Period_3,142,150,0,0.0,0.0,0.025,HIGH,True
+dairy eggs,Proxy_Period_4,144,155,0,0.0,0.0,0.0242,HIGH,True
+frozen,Proxy_Period_1,135,54,0,0.0,0.0,0.0664,HIGH,True
+frozen,Proxy_Period_2,151,55,0,0.0,0.0,0.0653,HIGH,True
+frozen,Proxy_Period_3,163,61,0,0.0,0.0,0.0592,HIGH,True
+frozen,Proxy_Period_4,152,58,0,0.0,0.0,0.0621,HIGH,True
+household,Proxy_Period_1,279,827,670,0.8102,0.782,0.8354,HIGH,True
+household,Proxy_Period_2,281,820,664,0.8098,0.7815,0.8352,HIGH,True
+household,Proxy_Period_3,304,887,748,0.8433,0.8179,0.8657,HIGH,True
+household,Proxy_Period_4,288,820,655,0.7988,0.77,0.8248,HIGH,True
+meat seafood,Proxy_Period_1,52,38,0,0.0,0.0,0.0918,MEDIUM,False
+meat seafood,Proxy_Period_2,61,50,0,0.0,0.0,0.0713,HIGH,True
+meat seafood,Proxy_Period_3,71,62,0,0.0,0.0,0.0583,HIGH,True
+meat seafood,Proxy_Period_4,53,49,0,0.0,0.0,0.0727,MEDIUM,False
+pantry,Proxy_Period_1,47,40,0,0.0,0.0,0.0876,MEDIUM,False
+pantry,Proxy_Period_2,56,48,0,0.0,0.0,0.0741,MEDIUM,False
+pantry,Proxy_Period_3,64,56,0,0.0,0.0,0.0642,HIGH,True
+pantry,Proxy_Period_4,49,43,0,0.0,0.0,0.082,MEDIUM,False
+personal care,Proxy_Period_1,261,681,580,0.8517,0.823,0.8764,HIGH,True
+personal care,Proxy_Period_2,273,701,597,0.8516,0.8234,0.876,HIGH,True
+personal care,Proxy_Period_3,301,785,671,0.8548,0.8284,0.8777,HIGH,True
+personal care,Proxy_Period_4,278,749,658,0.8785,0.8532,0.9,HIGH,True
+produce,Proxy_Period_1,140,161,0,0.0,0.0,0.0233,HIGH,True
+produce,Proxy_Period_2,148,163,0,0.0,0.0,0.023,HIGH,True
+produce,Proxy_Period_3,158,169,0,0.0,0.0,0.0222,HIGH,True
+produce,Proxy_Period_4,151,168,0,0.0,0.0,0.0224,HIGH,True
+snacks,Proxy_Period_1,268,311,0,0.0,0.0,0.0122,HIGH,True
+snacks,Proxy_Period_2,270,292,0,0.0,0.0,0.013,HIGH,True
+snacks,Proxy_Period_3,293,321,0,0.0,0.0,0.0118,HIGH,True
+snacks,Proxy_Period_4,275,267,0,0.0,0.0,0.0142,HIGH,True

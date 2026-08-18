@@ -1,0 +1,48 @@
+# Need vs Want Department & Aisle Mapping
+# Essential categories (Staples / Hygiene / Household / Baby) vs Impulse / Indulgence
+
+need_departments:
+  - personal care
+  - household
+  - babies
+  - pantry
+  - dairy eggs
+  - produce
+  - meat seafood
+
+want_departments:
+  - snacks
+  - beverages
+  - frozen
+  - bakery
+  - alcohol
+  - international
+  - deli
+  - missing
+  - other
+
+# Granular aisle overrides where necessary
+need_aisles:
+  - laundry
+  - diapers wipes
+  - oral hygiene
+  - soap
+  - body lotions soap
+  - hair care
+  - shave needs
+  - dish detergents
+  - paper goods
+  - cleaning products
+  - baby food formula
+  - feminine care
+  - deodorant
+
+want_aisles:
+  - candy chocolate
+  - cookies cakes
+  - chips pretzels
+  - soft drinks
+  - energy granola bars
+  - ice cream ice
+  - beer cooler
+  - specialty wines champagnes

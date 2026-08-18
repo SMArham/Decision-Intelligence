@@ -1,0 +1,49 @@
+# P&G Brand Identification Configuration
+# Regex patterns are matched case-insensitively against product_name
+
+include_keywords:
+  - tide
+  - ariel
+  - pampers
+  - whisper
+  - pantene
+  - head & shoulders
+  - head shoulders
+  - gillette
+  - venus
+  - oral-b
+  - oral b
+  - crest
+  - dawn
+  - febreze
+  - downy
+  - safeguard
+  - old spice
+  - ambipur
+  - ambi pur
+  - braun
+  - duracell
+  - olay
+  - always
+  - bounty
+  - charmin
+  - cascade
+  - swiffer
+  - gain
+  - vicks
+  - tampax
+  - herbal essences
+  - secret
+  - fixodent
+  - ivory
+
+exclude_keywords:
+  - tide pool
+  - mountain crest
+  - dawn to dusk
+  - golden crest
+  - golden tide
+  - spring tide
+  - high tide
+  - red tide
+  - crest mouthwash alternative generic
