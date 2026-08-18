@@ -78,9 +78,15 @@ html_content = f"""<!DOCTYPE html>
         padding: 0;
         height: 100%;
         background-color: #0b0f19;
+        color: #f8fafc;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       }}
       #root {{
         height: 100%;
+      }}
+      /* Make Stlite loader clearly visible */
+      .stlite-loading-screen, .stlite-progress, div[class*="loading"], div[class*="progress"] {{
+        color: #38bdf8 !important;
       }}
     </style>
   </head>
