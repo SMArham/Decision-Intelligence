@@ -3,10 +3,17 @@ I/O utility functions for atomic SQLite, Parquet, and CSV storage.
 """
 
 import os
-import sqlite3
 from pathlib import Path
 from typing import Dict, Optional, Union
 import pandas as pd
+
+try:
+    import sqlite3
+    _HAS_SQLITE = True
+except ImportError:
+    sqlite3 = None
+    _HAS_SQLITE = False
+
 from src.logging import get_logger
 from src.exceptions import EmptyDataError
 
@@ -53,6 +60,9 @@ def read_parquet(filepath: Union[str, Path]) -> pd.DataFrame:
 
 def save_sqlite(df: pd.DataFrame, db_path: Union[str, Path], table_name: str, if_exists: str = "replace") -> None:
     """Saves a DataFrame into a SQLite database table."""
+    if not _HAS_SQLITE or sqlite3 is None:
+        logger.debug("sqlite3 is not available in this environment. Skipping SQLite save.")
+        return
     db_p = Path(db_path)
     ensure_dir(db_p)
     with sqlite3.connect(db_p) as conn:
@@ -62,6 +72,9 @@ def save_sqlite(df: pd.DataFrame, db_path: Union[str, Path], table_name: str, if
 
 def query_sqlite(query: str, db_path: Union[str, Path]) -> pd.DataFrame:
     """Executes a SQL query against SQLite database and returns a DataFrame."""
+    if not _HAS_SQLITE or sqlite3 is None:
+        logger.warning("sqlite3 is not available in this environment.")
+        return pd.DataFrame()
     db_p = Path(db_path)
     if not db_p.exists():
         raise FileNotFoundError(f"SQLite database not found: {db_p}")
