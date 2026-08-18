@@ -41,13 +41,13 @@ SEC 10-K Financial Benchmarks ────────────────�
 * **Cashier Scan Sequence**: At checkout, cashiers scan items from the top of the trolley to the bottom. Consequently:
   $$\text{First Bought} = \text{Last Scanned (FILO)}$$
 * **Checkout Rank Formula**:
-  $$\text{checkout\_rank} = \text{basket\_size} - \text{add\_to\_cart\_order} + 1$$
-* **Need Zone Demarcation**: The last 10 scanned items ($\text{add\_to\_cart\_order} \le 10$) represent the customer's core **Essential Need Zone**.
+  $$\text{Checkout Rank} = \text{Basket Size} - \text{Add To Cart Order} + 1$$
+* **Need Zone Demarcation**: The last 10 scanned items (`add_to_cart_order <= 10`) represent the customer's core **Essential Need Zone**.
 
 ### 2. P&G Need Share & 95% Wilson Confidence Bounds
-$$\text{P\&G Need Share} = \frac{\sum \text{P\&G Items in Need Zone}}{\sum \text{Total Items in Need Zone}}$$
+$$\text{PG Need Share} = \frac{\sum \text{PG Items in Need Zone}}{\sum \text{Total Items in Need Zone}}$$
 
-To guarantee statistical significance and protect against small-sample variance, every segment is bounded using the **Wilson Score Interval** ($95\%$ confidence level):
+To guarantee statistical significance and protect against small-sample variance, every segment is bounded using the **Wilson Score Interval** (95% confidence level):
 $$w = \frac{\hat{p} + \frac{z^2}{2n} \pm z \sqrt{\frac{\hat{p}(1-\hat{p})}{n} + \frac{z^2}{4n^2}}}{1 + \frac{z^2}{n}}$$
 * **Wilson Lower CI (Risk Floor)**: Represents the minimum guaranteed market penetration in worst-case conditions.
 * **Wilson Upper CI (Growth Ceiling)**: Represents the upside market potential achievable through targeted campaigns.
@@ -60,13 +60,13 @@ To prevent rigid step-function cliffs (e.g. sharp jumps between discrete thresho
 
 ### 4. Unsupervised K-Means Customer Basket Segmentation
 Using multi-dimensional basket metrics (*basket size, need item count, P&G items, reorder rate*), the engine clusters shoppers into 3 actionable archetypes:
-1. 👨‍👩‍👧 **Staple Family Shoppers**: Large baskets ($\ge 14$ items), High P&G Need Share ($38\%+$) — *Prime conversion targets*.
-2. 🧼 **Hygiene & Care Focused Shoppers**: High brand loyalty in Diapers, Laundry, and Personal Care ($45\%+$ share).
+1. 👨‍👩‍👧 **Staple Family Shoppers**: Large baskets ($\ge 14$ items), High P&G Need Share (38%+) — *Prime conversion targets*.
+2. 🧼 **Hygiene & Care Focused Shoppers**: High brand loyalty in Diapers, Laundry, and Personal Care (45%+ share).
 3. ⚡ **Quick Convenience / Impulse Buyers**: Small baskets, want-heavy — *Promotional trial targets*.
 
 ### 5. Supervised Need Propensity Machine Learning Classifier
 * **Architecture**: Random Forest Classifier (`sklearn.ensemble.RandomForestClassifier`).
-* **Feature Set**: Cart sequence position, relative cart depth ($\frac{\text{add\_to\_cart\_order}}{\text{basket\_size}}$), reorder history, department ID, aisle ID.
+* **Feature Set**: Cart sequence position, relative cart depth (`add_to_cart_order / basket_size`), reorder history, department ID, aisle ID.
 * **Model Accuracy**: **100.0%**, **ROC-AUC: 1.000**, **F1 Score: 1.000**.
 
 ### 6. Hill Saturation Response Curve (Diminishing Returns)
@@ -82,11 +82,11 @@ The system is calibrated directly against verified disclosures from **The Procte
 * **Consolidated Advertising Expense**: **$8,560,000,000** ($8.56 Billion)
 * **Corporate Marketing Intensity**: **10.1857%** ($\approx 10.19\%$)
 * **Reportable Business Segment Allocations**:
-  - *Fabric & Home Care* (Tide, Ariel, Dawn, Cascade, Febreze, Swiffer, Downy): **35% Share** ($\$29.41\text{B}$ Net Sales, **$\$2.996\text{B}$ Ad Spend**)
-  - *Baby, Feminine & Family Care* (Pampers, Always, Whisper, Bounty, Charmin): **25% Share** ($\$21.01\text{B}$ Net Sales, **$\$2.140\text{B}$ Ad Spend**)
-  - *Beauty* (Pantene, Head & Shoulders, Olay, Herbal Essences): **18% Share** ($\$15.13\text{B}$ Net Sales, **$\$1.541\text{B}$ Ad Spend**)
-  - *Health Care* (Oral-B, Crest, Vicks): **14% Share** ($\$11.77\text{B}$ Net Sales, **$\$1.198\text{B}$ Ad Spend**)
-  - *Grooming* (Gillette, Venus, Braun): **8% Share** ($\$6.72\text{B}$ Net Sales, **$\$0.685\text{B}$ Ad Spend**)
+  - *Fabric & Home Care* (Tide, Ariel, Dawn, Cascade, Febreze, Swiffer, Downy): **35% Share** ($29.41B Net Sales, **$2.996B Ad Spend**)
+  - *Baby, Feminine & Family Care* (Pampers, Always, Whisper, Bounty, Charmin): **25% Share** ($21.01B Net Sales, **$2.140B Ad Spend**)
+  - *Beauty* (Pantene, Head & Shoulders, Olay, Herbal Essences): **18% Share** ($15.13B Net Sales, **$1.541B Ad Spend**)
+  - *Health Care* (Oral-B, Crest, Vicks): **14% Share** ($11.77B Net Sales, **$1.198B Ad Spend**)
+  - *Grooming* (Gillette, Venus, Braun): **8% Share** ($6.72B Net Sales, **$0.685B Ad Spend**)
 
 ---
 
