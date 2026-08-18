@@ -7,7 +7,12 @@ import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 import yaml
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+    _HAS_DOTENV = True
+except ImportError:
+    _HAS_DOTENV = False
+
 from src.exceptions import ConfigError
 from src.logging import get_logger
 
@@ -18,8 +23,12 @@ class AppConfig:
     """Singleton-style Application Configuration holder."""
 
     def __init__(self, config_dir: Optional[str] = None):
-        # Load .env file
-        load_dotenv(override=True)
+        # Load .env file if dotenv is available
+        if _HAS_DOTENV:
+            try:
+                load_dotenv(override=True)
+            except Exception:
+                pass
 
         self.root_dir = Path(__file__).resolve().parent.parent
         self.config_dir = Path(config_dir) if config_dir else self.root_dir / "config"

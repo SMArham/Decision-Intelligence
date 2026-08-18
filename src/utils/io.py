@@ -36,11 +36,17 @@ def save_parquet(df: pd.DataFrame, filepath: Union[str, Path]) -> Path:
 
 
 def read_parquet(filepath: Union[str, Path]) -> pd.DataFrame:
-    """Reads a DataFrame from Parquet file."""
+    """Reads a DataFrame from Parquet file with engine fallbacks."""
     path = Path(filepath)
     if not path.exists():
         raise FileNotFoundError(f"Parquet file not found: {path}")
-    df = pd.read_parquet(path, engine="pyarrow")
+    try:
+        df = pd.read_parquet(path)
+    except Exception:
+        try:
+            df = pd.read_parquet(path, engine="pyarrow")
+        except Exception:
+            df = pd.read_parquet(path, engine="fastparquet")
     logger.debug(f"Loaded {len(df)} rows from Parquet: {path}")
     return df
 
