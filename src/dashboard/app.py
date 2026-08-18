@@ -37,6 +37,9 @@ from src.rules.before_after import calculate_before_after_metrics
 from src.rules.budget import generate_budget_recommendations
 from src.utils.io import read_parquet
 from src.validation.checks import run_data_quality_checks
+from src.logging import get_logger
+
+logger = get_logger("dashboard_app")
 
 # Page Configuration
 st.set_page_config(
@@ -284,7 +287,7 @@ st.markdown("""
 
 @st.cache_data(show_spinner=False)
 def load_all_pipeline_data():
-    """Loads processed data from output files or executes pipeline."""
+    """Loads processed data from output files or executes in-memory pipeline."""
     config = get_config()
     out_dir = config.output_dir
     cache_dir = config.raw_cache_dir
@@ -303,18 +306,32 @@ def load_all_pipeline_data():
 
             feat_parquet = cache_dir / "basket_features.parquet"
             if feat_parquet.exists():
-                df_features = read_parquet(feat_parquet)
-            else:
-                from src.data.ingest import ingest_data
-                data = ingest_data(force_sample=True)
-                df_features = enrich_with_pg_brands(data["products"])
+                try:
+                    df_features = read_parquet(feat_parquet)
+                    return df_features, df_need_share, df_recommendations, df_before_after, df_dq
+                except Exception:
+                    pass
+
+            from src.data.sample_generator import generate_instacart_sample
+            sample_data = generate_instacart_sample()
+            df_prods = enrich_with_pg_brands(sample_data["products"])
+            df_features = calculate_basket_features(sample_data["order_products"], sample_data["orders"])
+            df_features = df_features.merge(
+                df_prods[["product_id", "product_name", "department_id", "is_pg_product", "matched_brand"]],
+                on="product_id",
+                how="left"
+            )
+            df_features = enrich_with_need_want(df_features, sample_data["departments"], sample_data["aisles"])
 
             return df_features, df_need_share, df_recommendations, df_before_after, df_dq
     except Exception as e:
-        st.warning(f"Reloading in-memory pipeline: {e}")
+        logger.warning(f"Reloading in-memory pipeline: {e}")
 
-    from src.data.ingest import ingest_data
-    tables = ingest_data(force_sample=True)
+    from src.data.sample_generator import generate_instacart_sample
+    from src.data.clean import clean_raw_datasets
+    raw_sample = generate_instacart_sample()
+    tables = clean_raw_datasets(raw_sample)
+
     df_products = enrich_with_pg_brands(tables["products"])
     df_features = calculate_basket_features(tables["order_products"], tables["orders"])
     df_features = df_features.merge(

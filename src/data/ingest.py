@@ -9,8 +9,20 @@ from typing import Dict, Optional
 import pandas as pd
 from src.config import get_config
 from src.data.clean import clean_raw_datasets
-from src.data.kaggle_client import KaggleClient
-from src.data.load import persist_data_mart
+
+try:
+    from src.data.kaggle_client import KaggleClient
+    _HAS_KAGGLE_CLIENT = True
+except ImportError:
+    KaggleClient = None
+    _HAS_KAGGLE_CLIENT = False
+
+try:
+    from src.data.load import persist_data_mart
+except ImportError:
+    def persist_data_mart(*args, **kwargs):
+        pass
+
 from src.data.sample_generator import generate_instacart_sample
 from src.exceptions import DatasetAccessError
 from src.logging import get_logger
@@ -33,7 +45,7 @@ def ingest_data(force_sample: bool = False, cleanup_raw_csv: bool = True) -> Dic
     datasets: Dict[str, pd.DataFrame] = {}
     is_sample = force_sample
 
-    if not force_sample:
+    if not force_sample and _HAS_KAGGLE_CLIENT and KaggleClient is not None:
         try:
             logger.info("Attempting automated dataset ingestion from Kaggle...")
             client = KaggleClient()
