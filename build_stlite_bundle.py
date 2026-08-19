@@ -45,22 +45,22 @@ files_to_embed = [
 ]
 
 files_dict = {
-    "src/__init__.py": {"content": ""},
-    "src/analytics/__init__.py": {"content": ""},
-    "src/dashboard/__init__.py": {"content": ""},
-    "src/data/__init__.py": {"content": ""},
-    "src/features/__init__.py": {"content": ""},
-    "src/models/__init__.py": {"content": ""},
-    "src/rules/__init__.py": {"content": ""},
-    "src/utils/__init__.py": {"content": ""},
-    "src/validation/__init__.py": {"content": ""}
+    "src/__init__.py": "",
+    "src/analytics/__init__.py": "",
+    "src/dashboard/__init__.py": "",
+    "src/data/__init__.py": "",
+    "src/features/__init__.py": "",
+    "src/models/__init__.py": "",
+    "src/rules/__init__.py": "",
+    "src/utils/__init__.py": "",
+    "src/validation/__init__.py": ""
 }
 
 for rel_path in files_to_embed:
     file_path = root / rel_path
     if file_path.exists():
         content = file_path.read_text(encoding="utf-8")
-        files_dict[rel_path.replace("\\", "/")] = {"content": content}
+        files_dict[rel_path.replace("\\", "/")] = content
 
 files_json = json.dumps(files_dict, indent=2)
 
