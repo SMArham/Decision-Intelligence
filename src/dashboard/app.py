@@ -8,8 +8,9 @@ from pathlib import Path
 
 # Add project root to sys.path
 root_dir = Path(__file__).resolve().parent.parent.parent
-if str(root_dir) not in sys.path:
-    sys.path.insert(0, str(root_dir))
+for p in [str(root_dir), ".", "/home/pyodide", str(Path.cwd())]:
+    if p not in sys.path:
+        sys.path.insert(0, p)
 
 import numpy as np
 import pandas as pd
